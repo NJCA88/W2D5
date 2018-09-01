@@ -19,7 +19,13 @@ class Node
 end
 
 class LinkedList
+  attr_accessor :head, :tail
+  
   def initialize
+    @head = Node.new(nil, nil)
+    @tail = Node.new(nil, nil)
+    @head.next = @tail
+    @tail.prev = @head
   end
 
   def [](i)
@@ -28,12 +34,16 @@ class LinkedList
   end
 
   def first
+    @head.next
   end
 
   def last
+    @tail.prev
   end
 
   def empty?
+    return @head.next == @tail
+    false
   end
 
   def get(key)
@@ -43,9 +53,20 @@ class LinkedList
   end
 
   def append(key, val)
+    temp_node = Node.new(key, val)
+    @tail.prev.next = temp_node
+    temp_node.prev = @tail.prev
+    @tail.prev = temp_node
+    temp_node.next = @tail
   end
 
   def update(key, val)
+    target_key = key
+    current_key = @head.key
+    
+    while current_key
+    
+    until 
   end
 
   def remove(key)
